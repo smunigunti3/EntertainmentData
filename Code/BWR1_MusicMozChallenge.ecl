@@ -89,10 +89,16 @@ OUTPUT(GetMyWaySongs, NAMED('MyWaySongs'));
 //Display the result
 
 CDFormatTracks := MozMusic(formats='CD');
-LongestTrackTitles := SORT(CDFormatTracks, -LENGTH(tracktitle));
-// OUTPUT(LongestTrackTitles, NAMED('LongestTrackTitles'));
-LongestTrackTitle := CHOOSEN(LongestTrackTitles, 1);
+//OUTPUT(CDFormatTracks, NAMED('CDFormatTracks'));
+LongestTrackLength := MAX(CDFormatTracks, LENGTH(TRIM(tracktitle)));
+//OUTPUT(LongestTrackLength, NAMED('LongestTrackLength'));
+LongestTrackTitle := CDFormatTracks(LENGTH(TRIM(tracktitle)) = LongestTrackLength);
 OUTPUT(LongestTrackTitle, NAMED('LongestTrackTitle'));
+
+//LongestTrackTitles := SORT(CDFormatTracks, -LENGTH(MozMusic.title));
+//OUTPUT(LongestTrackTitles, NAMED('LongestTrackTitles'));
+//LongestTrackTitle := CHOOSEN(LongestTrackTitles, 1);
+//OUTPUT(LongestTrackTitle, NAMED('LongestTrackTitle'));
 
 //Longest track title is by the "The Brand New Heavies"               
 
@@ -223,6 +229,7 @@ mostReleases := TABLE(releasesFrom2000s,
     name);
 
 sortedReleases := SORT(mostReleases, -TitleCnt);
+//OUTPUT(releasesFrom2000s(name='Presley,_Elvis'), NAMED('ElvisPresley'));
 // OUTPUT(sortedReleases, NAMED('SortedMostReleases'));
 
 TopArtist := CHOOSEN(sortedReleases, 1);
