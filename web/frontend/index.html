@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            width: 80%;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .results {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Recommendation System</h1>
+        <p>Enter a song ID to find similar songs:</p>
+        <input type="text" id="songId" placeholder="Enter song ID" />
+        <button onclick="getRecommendations()">Get Recommendations</button>
+
+        <div class="results" id="recommendations">
+            <!-- Recommended songs will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        function getRecommendations() {
+            const songId = document.getElementById('songId').value;
+            if (!songId) {
+                alert("Please enter a song ID.");
+                return;
+            }
+
+            // Check if the song ID matches the one you're hardcoding for
+            if (songId === "SOAAAVP12AC9618489") {
+                // Hardcoded top 10 songs
+                const recommendations = [
+                    { song_id: "SOAAAVP12AC9618489", artist: "Rush", title: "New World Man" },
+                    { song_id: "SOAAAVP12AC9618490", artist: "Petra", title: "Somebodys Gonna Praise His Name On Fire Album Version" },
+                    { song_id: "SOAAAVP12AC9618491", artist: "Servotron", title: "All Robots Report To The Dance Floor" },
+                    { song_id: "SOAAAVP12AC9618492", artist: "Phil Perry", title: "Makin Memories" },
+                    { song_id: "SOAAAVP12AC9618493", artist: "Kabat", title: "TAHNI DAL" },
+                    { song_id: "SOAAAVP12AC9618494", artist: "Marcelo", title: "Los Pasos De Mi Gorda" },
+                    { song_id: "SOAAAVP12AC9618495", artist: "React", title: "The First Night Of Forever" },
+                    { song_id: "SOAAAVP12AC9618496", artist: "Martn 1lia", title: "Rest la maloya Essa mania" },
+                    { song_id: "SOAAAVP12AC9618497", artist: "Mightyfools", title: "Super Sexy" },
+                    { song_id: "SOAAAVP12AC9618498", artist: "Commander Cody The Lost Planet Airmen", title: "Down Out" }
+                ];
+
+                // Display the hardcoded recommendations
+                const recommendationsContainer = document.getElementById('recommendations');
+                recommendationsContainer.innerHTML = '<h3>Top 10 Similar Songs:</h3>';
+                const list = document.createElement('ul');
+                recommendations.forEach(song => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Song: "${song.title}" by ${song.artist}`;
+                    list.appendChild(listItem);
+                });
+                recommendationsContainer.appendChild(list);
+            } else {
+                alert("No recommendations available for this song ID.");
+            }
+        }
+    </script>
+</body>
+</html>
