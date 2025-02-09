@@ -11,6 +11,7 @@ MinLoudness := MIN(MSDMusic, loudness);
 MaxLoudness := MAX(MSDMusic, loudness);
 
 NormalizedMSDMusic_Layout := RECORD
+    STRING Song_ID;
     String Artist;
     String Title;
     String Tempo;
@@ -20,6 +21,7 @@ NormalizedMSDMusic_Layout := RECORD
 END;
 
 NormalizedMSDMusic := PROJECT(MSDMusic, TRANSFORM(NormalizedMSDMusic_Layout,
+    SELF.Song_ID := LEFT.song_id;
     SELF.Artist := LEFT.artist_name;
     SELF.Title := LEFT.title;
     SELF.Tempo := (STRING)LEFT.tempo;
