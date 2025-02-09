@@ -1,7 +1,10 @@
 # Hackathon Submission
 Names: Jocelyn Chang and Siri Munigunti
+
 Purpose: This project makes use of the Enterprise Control Language (ECL) to search through datasets of songs and find tracks of similar tempo and loudness.
+
 Tools: ECL, HTML, JavaScript, GenAI
+
 Problems: We had some trouble initially with creating datasets and tables by manipulating the existing datasets. We overcame these challenges by more clearly defining the structure and variables used in each table and dataset.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
