@@ -1,5 +1,4 @@
-﻿#OPTION('obfuscateOutput', TRUE);
-IMPORT $;
+﻿IMPORT $;
 MozMusic := $.File_Music.MozDS;
 
 //display the first 150 records
