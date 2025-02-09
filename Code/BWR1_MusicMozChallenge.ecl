@@ -136,9 +136,10 @@ OUTPUT(COUNT(SortedU2Songs), NAMED('U2SongsCount'));
 //Hint: Think of the filter as "not blank" 
 
 //Filter for "guestmusicians"
-
+guestMusicianSongs := MozMusic(guestmusicians != '');
 
 //Display Count result
+OUTPUT(COUNT(guestMusicianSongs), NAMED('GuestMusicianSongsCount'));
                              
 
 //Result should be 44588 songs  
