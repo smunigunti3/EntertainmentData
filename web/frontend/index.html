@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            width: 80%;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .results {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Recommendation System</h1>
+        <p>Enter a song ID to find similar songs:</p>
+        <input type="text" id="songId" placeholder="Enter song ID" />
+        <button onclick="getRecommendations()">Get Recommendations</button>
+
+        <div class="results" id="recommendations">
+            <!-- Recommended songs will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        async function getRecommendations() {
+            const songId = document.getElementById('songId').value;
+            if (!songId) {
+                alert("Please enter a song ID.");
+                return;
+            }
+
+            try {
+                // Call the backend to get similar songs (replace with your actual API endpoint)
+                const response = await fetch(`/api/getSimilarSongs?songId=${songId}`);
+                const data = await response.json();
+
+                // Display the recommendations
+                const recommendationsContainer = document.getElementById('recommendations');
+                recommendationsContainer.innerHTML = '<h3>Top 5 Similar Songs:</h3>';
+                if (data && data.length > 0) {
+                    const list = document.createElement('ul');
+                    data.forEach(song => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `Song ID: ${song.song_id}, Tempo: ${song.tempo}, Loudness: ${song.loudness}`;
+                        list.appendChild(listItem);
+                    });
+                    recommendationsContainer.appendChild(list);
+                } else {
+                    recommendationsContainer.innerHTML += '<p>No similar songs found.</p>';
+                }
+            } catch (error) {
+                console.error("Error fetching recommendations:", error);
+                alert("Error fetching recommendations. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>
